@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisioFlow | Editor's Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'primary': '#818cf8',      // indigo-400
+            'secondary': '#67e8f9',    // cyan-300
+            'background': '#0f172a',  // slate-900 (Fallback)
+            'surface': '#1e293b',      // slate-800 (Fallback)
+            'on-primary': '#1e293b',   // slate-800
+            'on-secondary': '#0f172a', // slate-900
+            'on-background': '#f1f5f9', // slate-100
+            'on-surface': '#cbd5e1',   // slate-300
+            'error': '#f471b5',        // fuchsia-400
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            'slide-in-left': 'slideInLeft 0.5s ease-out forwards',
+            'gradient-bg': 'gradient-bg 15s ease infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-20px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            'gradient-bg': {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+          }
+        }
+      }
+    }
+    </script>
+     <style>
+      body {
+        background: linear-gradient(-45deg, #1e1b4b, #4338ca, #0e7490, #164e63);
+        background-size: 400% 400%;
+        animation: gradient-bg 15s ease infinite;
+      }
+      .glass-pane {
+        background-color: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem; /* 24px */
+      }
+       .text-glow {
+        text-shadow: 0 0 8px rgba(129, 140, 248, 0.6), 0 0 20px rgba(129, 140, 248, 0.4);
+      }
+    </style>
+    <!-- Recharts -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.1",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+</head>
+<body class="text-on-background font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
