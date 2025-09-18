@@ -1,0 +1,138 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Cybernetic Dreams",
+      "category": "Motion Graphics",
+      "description": "A futuristic motion graphics piece exploring the intersection of technology and consciousness. Utilizes complex particle systems and fluid dynamics simulations in After Effects and Cinema 4D to create a visually stunning journey.",
+      "imageUrl": "https://picsum.photos/seed/cyber1/600/400",
+      "videoUrl": "https://www.youtube.com/embed/3QsiR-9z-yY",
+      "client": "SynthWave Co.",
+      "year": 2023,
+      "duration": "4 Weeks",
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Redshift"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Kinetic Typography Intro",
+      "category": "Motion Graphics",
+      "description": "Dynamic and engaging intro sequence for a popular tech YouTube channel. Every letter and word is meticulously animated to match the voice-over and music rhythm, creating a high-energy and informative opening.",
+      "imageUrl": "https://picsum.photos/seed/kinetic2/600/400",
+      "videoUrl": "https://www.youtube.com/embed/rokGy0huYEA",
+      "client": "TechSphere",
+      "year": 2023,
+      "duration": "2 Weeks",
+      "tools": [
+        "After Effects",
+        "Illustrator"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "E-commerce Product Showcase",
+      "category": "Commercial",
+      "description": "Sleek and modern video showcasing a new line of smart home devices. The edit combines clean, studio-shot product footage with lifestyle shots and subtle motion graphics to highlight key features and benefits.",
+      "imageUrl": "https://picsum.photos/seed/ecomm3/600/400",
+      "client": "FutureHome Inc.",
+      "year": 2022,
+      "duration": "3 Weeks",
+      "tools": [
+        "Premiere Pro",
+        "After Effects",
+        "DaVinci Resolve"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Nature's Palette",
+      "category": "Color Grading",
+      "description": "A color grading showcase reel transforming flat, raw drone footage into cinematic and breathtaking landscapes. Graded in DaVinci Resolve, this reel demonstrates the power of color in setting the mood and enhancing natural beauty.",
+      "imageUrl": "https://picsum.photos/seed/nature4/600/400",
+      "videoUrl": "https://www.youtube.com/embed/N1-Jmq7BLFE",
+      "client": "Personal Project",
+      "year": 2024,
+      "duration": "1 Week",
+      "tools": [
+        "DaVinci Resolve"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Corporate Storytelling",
+      "category": "Video Editing",
+      "description": "An emotionally resonant brand story for a leading software company. This project involved editing interviews and b-roll to craft a compelling narrative that highlights the company's mission and impact.",
+      "imageUrl": "https://picsum.photos/seed/corp5/600/400",
+      "client": "Innovate Solutions",
+      "year": 2022,
+      "duration": "5 Weeks",
+      "tools": [
+        "Premiere Pro",
+        "Audition"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Abstract VFX Short",
+      "category": "VFX",
+      "description": "Experimental short film using particle simulations and abstract visual effects to visualize sound. This piece pushes creative boundaries, blending audio and visuals into a single, cohesive experience.",
+      "imageUrl": "https://picsum.photos/seed/vfx6/600/400",
+      "client": "Personal Project",
+      "year": 2023,
+      "duration": "6 Weeks",
+      "tools": [
+        "Houdini",
+        "After Effects",
+        "Nuke"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Music Video \"Eclipse\"",
+      "category": "Video Editing",
+      "description": "Fast-paced editing and dynamic effects for an indie rock band's music video. The edit combines performance footage with a loose narrative, using speed ramps and stylized transitions to match the song's energy.",
+      "imageUrl": "https://picsum.photos/seed/music7/600/400",
+      "videoUrl": "https://www.youtube.com/embed/0gBigM5e6_4",
+      "client": "The Starlight Drifters",
+      "year": 2023,
+      "duration": "2 Weeks",
+      "tools": [
+        "Premiere Pro",
+        "After Effects"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Tech Startup Explainer",
+      "category": "Motion Graphics",
+      "description": "A 2D animated explainer video simplifying a complex software service. The video uses friendly characters and clean iconography to make the information accessible and engaging for a wide audience.",
+      "imageUrl": "https://picsum.photos/seed/tech8/600/400",
+      "client": "Connectify",
+      "year": 2024,
+      "duration": "4 Weeks",
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Figma"
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Luxury Watch Ad",
+      "category": "Commercial",
+      "description": "A high-end commercial featuring detailed macro product shots and sophisticated visuals. The editing and color grading work together to create an atmosphere of elegance and precision, befitting a luxury brand.",
+      "imageUrl": "https://picsum.photos/seed/watch9/600/400",
+      "client": "Aethelred Watches",
+      "year": 2022,
+      "duration": "3 Weeks",
+      "tools": [
+        "DaVinci Resolve",
+        "Premiere Pro"
+      ]
+    }
+  ],
+  "incomes": []
+}

@@ -6,7 +6,7 @@ import { TrashIcon, ExternalLinkIcon, EditIcon } from '../components/icons';
 import ConfirmationModal from '../components/ConfirmationModal';
 
 const AdminPage: React.FC = () => {
-    const { projects, addProject, updateProject, deleteProject } = usePortfolio();
+    const { projects, addProject, updateProject, deleteProject, loading, error } = usePortfolio();
     
     const [isEditing, setIsEditing] = useState<string | null>(null);
     const [title, setTitle] = useState('');
@@ -47,7 +47,7 @@ const AdminPage: React.FC = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!title || !category || !description || !imageUrl) {
             alert("Please fill out Title, Category, Description, and Image URL.");
@@ -67,9 +67,9 @@ const AdminPage: React.FC = () => {
         };
         
         if (isEditing) {
-            updateProject({ ...projectData, id: isEditing });
+            await updateProject({ ...projectData, id: isEditing });
         } else {
-            addProject(projectData);
+            await addProject(projectData);
         }
         resetForm();
     };
@@ -78,9 +78,9 @@ const AdminPage: React.FC = () => {
         setProjectToDelete(project);
     };
 
-    const handleConfirmDelete = () => {
+    const handleConfirmDelete = async () => {
         if (projectToDelete) {
-            deleteProject(projectToDelete.id);
+            await deleteProject(projectToDelete.id);
             setProjectToDelete(null);
         }
     };
@@ -122,8 +122,11 @@ const AdminPage: React.FC = () => {
 
                         <div className="lg:col-span-2 glass-pane p-6 flex flex-col">
                             <h3 className="text-2xl font-bold mb-4 text-white flex-shrink-0">Existing Projects ({projects.length})</h3>
+                             {error && <p className="text-center py-4 text-error">{error}</p>}
                             <div className="overflow-y-auto space-y-3 pr-2 -mr-2">
-                                {projects.length > 0 ? projects.map(project => (
+                                {loading ? (
+                                     <p className="text-center py-12 text-slate-400">Loading projects...</p>
+                                ) : projects.length > 0 ? projects.map(project => (
                                     <div key={project.id} className="flex items-center justify-between p-3 bg-black/20 rounded-xl hover:bg-black/30 border border-transparent hover:border-primary/50 transition-all">
                                         <div className="flex items-center space-x-4 overflow-hidden">
                                             <img src={project.imageUrl} alt={project.title} className="w-20 h-12 object-cover rounded-lg flex-shrink-0"/>

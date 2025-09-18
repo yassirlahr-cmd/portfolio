@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import type { IncomeEntry } from '../types';
 import { TrashIcon } from '../components/icons';
+import * as api from '../api';
 
 const IncomeChart: React.FC<{ data: any[] }> = ({ data }) => {
     const [Recharts, setRecharts] = useState<any>(null);
@@ -93,53 +94,70 @@ const IncomeTable: React.FC<{ entries: IncomeEntry[], onDelete: (id: string) => 
 
 const IncomePage: React.FC = () => {
     const [incomes, setIncomes] = useState<IncomeEntry[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
     const [project, setProject] = useState('');
     const [client, setClient] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
-    useEffect(() => {
+    const fetchIncomes = useCallback(async () => {
         try {
-            const storedIncomes = localStorage.getItem('incomeEntries');
-            if (storedIncomes) {
-                setIncomes(JSON.parse(storedIncomes));
-            }
-        } catch (error) {
-            console.error("Failed to parse incomes from localStorage", error);
-        }
-    }, []);
+           setLoading(true);
+           setError(null);
+           const data = await api.getIncomes();
+           setIncomes(data);
+       } catch (err) {
+           const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+           setError(`Failed to load income data: ${errorMessage}`);
+           console.error(err);
+       } finally {
+           setLoading(false);
+       }
+   }, []);
 
     useEffect(() => {
-        localStorage.setItem('incomeEntries', JSON.stringify(incomes));
-    }, [incomes]);
+        fetchIncomes();
+    }, [fetchIncomes]);
 
-    const handleAddIncome = useCallback((e: React.FormEvent) => {
+
+    const handleAddIncome = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         if (!project || !amount) return;
-        const newEntry: IncomeEntry = {
-            id: new Date().toISOString(),
+        const newEntryData = {
             project,
             client,
             amount: parseFloat(amount),
             date,
         };
-        setIncomes(prev => [...prev, newEntry].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
-        setProject('');
-        setClient('');
-        setAmount('');
-        setDate(new Date().toISOString().split('T')[0]);
-    }, [project, client, amount, date]);
+        try {
+            await api.addIncome(newEntryData);
+            await fetchIncomes(); // Re-fetch to get the latest sorted list
+            setProject('');
+            setClient('');
+            setAmount('');
+            setDate(new Date().toISOString().split('T')[0]);
+        } catch (err) {
+            console.error("Failed to add income", err);
+            setError('Failed to add income. Please try again.');
+        }
+    }, [project, client, amount, date, fetchIncomes]);
 
-    const handleDeleteIncome = useCallback((id: string) => {
-        setIncomes(prev => prev.filter(entry => entry.id !== id));
+    const handleDeleteIncome = useCallback(async (id: string) => {
+        try {
+            await api.deleteIncome(id);
+            setIncomes(prev => prev.filter(entry => entry.id !== id));
+        } catch (err) {
+            console.error("Failed to delete income", err);
+            setError('Failed to delete income. Please try again.');
+        }
     }, []);
 
     const chartData = useMemo(() => {
         const monthlyIncome: { [key: string]: { total: number; date: Date } } = {};
         
-        // Group incomes by the first day of their month to ensure correct aggregation.
         incomes.forEach(entry => {
-            // Dates from <input type="date"> are parsed as UTC.
             const entryDate = new Date(entry.date);
             const monthKeyDate = new Date(Date.UTC(entryDate.getUTCFullYear(), entryDate.getUTCMonth(), 1));
             const monthKey = monthKeyDate.toISOString();
@@ -150,7 +168,6 @@ const IncomePage: React.FC = () => {
             monthlyIncome[monthKey].total += entry.amount;
         });
     
-        // Sort the aggregated months chronologically and format for the chart.
         return Object.values(monthlyIncome)
             .sort((a, b) => a.date.getTime() - b.date.getTime())
             .map(monthData => ({
@@ -197,7 +214,12 @@ const IncomePage: React.FC = () => {
 
             <div className="animate-fade-in-up glass-pane p-6" style={{ animationDelay: '0.4s' }}>
                 <h2 className="text-2xl font-bold mb-4 text-white">Income History</h2>
-                <IncomeTable entries={incomes} onDelete={handleDeleteIncome} />
+                {error && <p className="text-center py-4 text-error">{error}</p>}
+                {loading ? (
+                    <p className="text-center py-12 text-slate-400">Loading income history...</p>
+                ) : (
+                    <IncomeTable entries={incomes} onDelete={handleDeleteIncome} />
+                )}
             </div>
         </div>
     );

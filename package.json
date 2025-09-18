@@ -1,22 +1,17 @@
 {
-  "name": "visioflow-|-editor's-dashboard",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "visioflow-fullstack",
+  "version": "1.0.0",
+  "description": "Fullstack version of VisioFlow dashboard",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react-router-dom": "^7.9.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "install": "cd server && npm install",
+    "build": "cd server && tsc",
+    "start": "node server/dist/server.js",
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "live-server --port=5500"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.2"
   }
 }
