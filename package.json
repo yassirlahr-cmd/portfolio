@@ -1,17 +1,7 @@
 {
-  "name": "visioflow-fullstack",
-  "version": "1.0.0",
-  "description": "Fullstack version of VisioFlow dashboard",
   "scripts": {
-    "install": "cd server && npm install",
-    "build": "cd server && tsc",
-    "start": "node server/dist/server.js",
-    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "live-server --port=5500"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "live-server": "^1.2.2"
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview --host 0.0.0.0 --port $PORT"
   }
 }
